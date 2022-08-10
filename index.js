@@ -2,6 +2,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const app = express();
 var cors = require("cors");
+const port = process.env.PORT || 3333;
 
 app.use(
   express.urlencoded({
@@ -19,7 +20,7 @@ const productRoutes = require("./routes/productRoutes");
 app.use("/product", productRoutes);
 
 app.get("/", (req, res) => {
-  res.send({ message: "Deu certo" });
+  res.send({ message: "Server Ok" });
 });
 
 mongoose
@@ -28,5 +29,5 @@ mongoose
   )
   .then(() => {
     console.log("Conectado ao mongoDB");
-    app.listen(3333);
+    app.listen(port);
   });
